@@ -15,6 +15,19 @@ public class App {
          * @return Arreglo de marcas con modelos y años
          */
         public static Brand[] createBrands() {
+                System.out.println("Lista antes de Ordenar: ==== ");
+                Brand[] brands = createBrands();
+                Brand brandObj = new Brand("", new CarModel[] {});
+                brands = brandObj.sortSelectionDesc(null);
+
+                Brand resultado = brandObj.binarySearchByValidYears(null, 2, false);
+
+                if (resultado != null) {
+                        System.out.println("Encontrado: " + resultado.getBrandName());
+                } else {
+                        System.out.println("No encontrado. ");
+                }
+
                 // ===== HONDA =====
                 CarYear[] civicYears = {
                                 new CarYear(2018, false),
