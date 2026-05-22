@@ -10,7 +10,7 @@ public class Brand {
     int total = 0;
     for (int i = 0; i < models.length; i++) {
       CarYear[] years = models[i].getYears();
-      for (int j = i + 1; j < years.length; j++) {
+      for (int j = 0; j < years.length; j++) {
         if (years[j].isValid()) {
           total++;
         }
@@ -55,7 +55,7 @@ public class Brand {
         }
       } else {
         if (validYears < midYears) {
-          left = mid - 1;
+          left = mid + 1;
         } else {
           right = mid - 1;
         }

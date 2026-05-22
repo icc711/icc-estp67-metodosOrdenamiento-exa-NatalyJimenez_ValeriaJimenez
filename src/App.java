@@ -4,9 +4,40 @@ import models.CarYear;
 
 public class App {
         public static void main(String[] args) throws Exception {
-                System.out.println("Examen interciclo de Estructuras de Datos");
-                System.out.println("====Configurar studente.env====");
+                System.out.println("Examen interciclo de Estructuras de Datos");               
 
+                Brand[] brands = createBrands();               
+                Brand brandObj = new Brand("", new CarModel[] {});                
+                
+                // se imprimer lista original
+                System.out.println("\nOriginal:");
+                for (Brand b : brands){
+                        System.out.println(b.getBrandName() + " - Años Válidos: " + b.getTotalValidYears());
+                }
+
+                //Ordenar por metodo "SelectionSort Descendente"
+                brands = brandObj.sortSelectionDesc(brands);
+                System.out.println("\nOrdenado por Selection Sort descendente:");
+                for(Brand b: brands){
+                        System.out.println(b.getBrandName() + " - Años válidos: " + b.getTotalValidYears());
+                }
+
+                //Buscar con 4 años válidos
+                System.out.println("\nBuscar marca con 4 años válidos que se ordenaron de mayor a menor: ");
+                Brand r1 = brandObj.binarySearchByValidYears(brands, 4, false);
+                if (r1 != null) {
+                        System.out.println("Encontrada: Marca: " + r1.getBrandName() + ", Total años válidos: " + r1.getTotalValidYears());
+                } else {
+                        System.out.println("No encontrada. ");
+                }
+
+                System.out.println("\nBuscar marca con 3 años válidos que se encontraron de mayor a menor:");
+                Brand r2 = brandObj.binarySearchByValidYears(brands, 3, false);
+                if (r2 != null) {
+                        System.out.println("Encontrada: Marca: " + r2.getBrandName() + ", Total años válidos:" + r2.getTotalValidYears());
+                }else{
+                        System.out.println("No encontrada");
+                }
         }
 
         /**
@@ -15,19 +46,7 @@ public class App {
          * @return Arreglo de marcas con modelos y años
          */
         public static Brand[] createBrands() {
-                System.out.println("Lista antes de Ordenar: ==== ");
-                Brand[] brands = createBrands();
-                Brand brandObj = new Brand("", new CarModel[] {});
-                brands = brandObj.sortSelectionDesc(null);
-
-                Brand resultado = brandObj.binarySearchByValidYears(null, 2, false);
-
-                if (resultado != null) {
-                        System.out.println("Encontrado: " + resultado.getBrandName());
-                } else {
-                        System.out.println("No encontrado. ");
-                }
-
+      
                 // ===== HONDA =====
                 CarYear[] civicYears = {
                                 new CarYear(2018, false),
